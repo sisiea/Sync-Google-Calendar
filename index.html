@@ -4,19 +4,19 @@
 <head>
   <title>Sync Google Calendar</title>
   <meta charset='utf-8' />
-  <link href='./fullcalendar.min.css' rel='stylesheet' />
-  <link href='./fullcalendar.print.min.css' rel='stylesheet' media='print' />
+  <link href='./style/fullcalendar.min.css' rel='stylesheet' />
+  <link href='./style/fullcalendar.print.min.css' rel='stylesheet' media='print' />
   <script src='./lib/moment.min.js'></script>
   <script src='./lib/jquery.min.js'></script>
-  <script src='./fullcalendar.min.js'></script>
-  <script src='./gcal.min.js'></script>
+  <script src='./lib/fullcalendar.min.js'></script>
+  <script src='./lib/gcal.min.js'></script>
 </head>
 
 <body>
   <p>Sync Google Calendar</p>
 
   <!--Add buttons to initiate auth sequence and sign out-->
-  <button id="authorize-button" style="display: none;">Authorize</button>
+  <button id="authorize-button" style="display: none;">Sign In</button>
   <button id="signout-button" style="display: none;">Sign Out</button>
 
   <pre id="content"></pre>
@@ -163,11 +163,6 @@
           return false;
         }
       });
-    }
-
-    function eventFactory(start, end, title) {
-      var obj = { start, end, title };
-      return obj;
     }
 
   </script>
