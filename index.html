@@ -96,18 +96,6 @@
     }
 
     /**
-     * Append a pre element to the body containing the given message
-     * as its text node. Used to display the results of the API call.
-     *
-     * @param {string} message Text to be placed in pre element.
-     */
-    function appendPre(message) {
-      var pre = document.getElementById('content');
-      var textContent = document.createTextNode(message + '\n');
-      pre.appendChild(textContent);
-    }
-
-    /**
      * Print the summary and start datetime/date of the next ten events in
      * the authorized user's calendar. If no events are found an
      * appropriate message is printed.
@@ -128,6 +116,14 @@
 
     function renderCal(events) {
       var eventsArr = events.map(function (event) {
+        if(event.start.dateTime){
+          return {
+            start: $.fullCalendar.moment(event.start.dateTime).format('YYYY MM DD HH:MM:SS'),
+            end: $.fullCalendar.moment(event.end.dateTime).format('YYYY MM DD HH:MM:SS'),
+            title: event.summary,
+            url: event.htmlLink
+          }
+        }
         return {
           start: event.start.date,
           end: event.end.date,
@@ -147,7 +143,10 @@
           right: 'month,listYear'
         },
 
-        displayEventTime: false, // don't show the time column in list view
+        
+        displayEventTime: true, 
+        displayEventEnd: true,
+        eventLimit: true,
 
         // THIS KEY WON'T WORK IN PRODUCTION!!!
         // To make your own Google API key, follow the directions here:
